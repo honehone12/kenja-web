@@ -1,5 +1,6 @@
 <script>
-    
+    import SearchInput from "$lib/components/SearchInput.svelte";
+
 </script>
 
 <h1 class="text-xl">Kenja</h1>
@@ -12,3 +13,5 @@
         github
     </a>
 </p>
+
+<SearchInput/>
