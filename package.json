@@ -8,8 +8,8 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^4.0.0",
@@ -26,13 +26,15 @@
 	"pnpm": {
 		"onlyBuiltDependencies": [
 			"esbuild",
-			"grpc-tools"
+			"grpc-tools",
+			"protobufjs"
 		]
 	},
 	"packageManager": "pnpm@10.6.2+sha512.47870716bea1572b53df34ad8647b42962bc790ce2bf4562ba0f643237d7302a3d6a8ecef9e4bdfc01d23af1969aa90485d4cebb0b9638fa5ef1daef656f6c1b",
 	"dependencies": {
 		"@grpc/grpc-js": "^1.12.6",
 		"daisyui": "^5.0.0",
+		"google-protobuf": "^3.21.4",
 		"pino": "^9.6.0"
 	}
 }
