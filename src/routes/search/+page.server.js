@@ -23,7 +23,7 @@ async function bufferStream(stream) {
 }
 
 export async function load({url}) {
-    if (!grpcClient.anime_search) {
+    if (!grpcClient.animeSearch) {
         return error(STATUS_INTERNAL_SERVER_ERROR, INTERNAL_SERVER_ERROR);
     }
     
@@ -35,13 +35,13 @@ export async function load({url}) {
         ? Rating.RATING_HENTAI : Rating.RATING_ALL_AGES;
 
     try {
-        const stream = grpcClient.anime_search.search({
+        const stream = grpcClient.animeSearch.search({
             keyword,
             rating
         });
 
         return {
-            candidatesStream: bufferStream(stream)  
+            stream: bufferStream(stream)  
         };
     } catch (e) {
         log.error(e);

@@ -2,7 +2,7 @@
     let {data} = $props();
 </script>
 
-{#await data.candidatesStream}
+{#await data.stream}
     loading
 {:then candidates} 
     {#each candidates as candidate}

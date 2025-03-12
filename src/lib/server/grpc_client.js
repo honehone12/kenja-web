@@ -7,11 +7,11 @@ import { AnimeSearchDefinition } from "./grpc/anime_search.js";
 
 /**
  * @type {{
- *  anime_search: import("./grpc/anime_search").AnimeSearchClient | null
+ *  animeSearch: import("./grpc/anime_search").AnimeSearchClient | null
  * }}
  */
 export const grpcClient = {
-    anime_search: null
+    animeSearch: null
 };
 
 if (!building) {
@@ -21,5 +21,5 @@ if (!building) {
     }
 
     const channel = createChannel(search_service_url);
-    grpcClient.anime_search = createClient(AnimeSearchDefinition, channel);
+    grpcClient.animeSearch = createClient(AnimeSearchDefinition, channel);
 }
