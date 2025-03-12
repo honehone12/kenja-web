@@ -1,24 +1,12 @@
 'use strict';
 
 import { error } from "@sveltejs/kit";
-// import {search} from "$lib/server/anime_search"
-
-import messages from "$lib/server/grpc/anime_search_pb.cjs";
-import services from "$lib/server/grpc/anime_search_grpc_pb.cjs";
-import grpc from "@grpc/grpc-js";
 import logger from "$lib/server/logger";
 
 const service_url = process.env.SEARCH_SERVICE_URL;
 if (!service_url) {
     throw new Error('env SEARCH_SERVICE_URL is not set');
 }
-
-
-
-// const client = new services.AnimeSearchClient(
-//     service_url,
-//     grpc.credentials.createInsecure()
-// );
 
 /**
  * 
