@@ -31,7 +31,6 @@ export async function load({url}) {
     if (!keyword || keyword.length > 50) {
         return error(STATUS_BAD_REQ, BAD_REQ);
     }
-    log.info(keyword);
     const rating = url.searchParams.get('rating') 
         ? Rating.RATING_HENTAI : Rating.RATING_ALL_AGES;
 

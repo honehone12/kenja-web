@@ -13,7 +13,7 @@
             {#each candidates as c}
                 <div class="hero-content">
                     <CandidateCard 
-                        url={c.name}
+                        url={c.url}
                         parent={c.parent}
                         name={c.name}
                         nameEnglish={c.nameEnglish}

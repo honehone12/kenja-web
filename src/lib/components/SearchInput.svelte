@@ -29,7 +29,7 @@
         </label>
         <button
             type="submit" 
-            class="join-item btn btn-xl mr-10"
+            class="join-item btn btn-xl"
         >
             Search
         </button>
