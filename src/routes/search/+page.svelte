@@ -1,13 +1,29 @@
 <script>
+    import CandidateCard from '$lib/components/CandidateCard.svelte';
+    import ErrorMessage from '$lib/components/ErrorMessage.svelte';
+
     let {data} = $props();
 </script>
 
-{#await data.stream}
-    loading
-{:then candidates} 
-    {#each candidates as candidate}
-        {candidate}
-    {/each}
-{:catch error}
-    {error}
-{/await}
+<div class="hero h-screen">
+    <div>
+        {#await data.stream}
+            <span class="loading loading-dots loading-xl"></span>
+        {:then candidates} 
+            {#each candidates as c}
+                <div class="hero-content">
+                    <CandidateCard 
+                        url={c.name}
+                        parent={c.parent}
+                        name={c.name}
+                        nameEnglish={c.nameEnglish}
+                        nameJapanese={c.nameJapanese}
+                    />
+                </div>
+            {/each}
+        {:catch}
+            <ErrorMessage/>
+        {/await}
+    </div>
+</div>
+
