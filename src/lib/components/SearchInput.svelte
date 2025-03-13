@@ -1,4 +1,4 @@
-<div>
+<div class="w-screen">
     <form method="get" action="search">
         <div class="mb-5 ml-5">
             <label for="rating">
@@ -13,8 +13,11 @@
             </label>
         </div>
 
-        <div class="join w-full max-w-3xl">
-            <label for="keyword" class="join-item input input-xl grow">
+        <div class="join w-full">
+            <label 
+                for="keyword" 
+                class="join-item input input-xl w-full max-w-3xl grow"
+            >
                 <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>
                 <input 
                     type="text"
@@ -27,7 +30,7 @@
             </label>
             <button
                 type="submit" 
-                class="btn btn-xl join-item"
+                class="join-item btn btn-xl mr-10"
             >
                 Search
             </button>
