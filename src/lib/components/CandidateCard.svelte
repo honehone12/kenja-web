@@ -3,7 +3,6 @@
     
     /**
      * @type {{
-     *  url: string;
      *  parent?: {
      *   name: string;
      *   nameJapanese?: string | undefined;
@@ -14,7 +13,6 @@
      * }}
      */
     let {
-        url,
         parent,
         name,
         nameEnglish,
@@ -45,6 +43,5 @@
         {#if nameJapanese}
             <h1 class="card-title text-{titleColor}">{nameJapanese}</h1>
         {/if}
-        <a href="{url}" class="link link-primary">MyAnimeList</a>
     </div>
 </div>
