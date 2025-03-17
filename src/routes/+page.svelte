@@ -2,9 +2,9 @@
     import SearchInput from "$lib/components/SearchInput.svelte";
 </script>
 
-<div class="hero h-screen">
+<div class="hero">
     <div class="hero-content flex-col w-screen max-w-3xl">
-        <figure class="mb-10 mt-50">
+        <figure class="mb-10 mt-25">
             <img
                 src="KenjaMedium.png"
                 alt="Kenja logo with english and japanese kanji"
@@ -16,7 +16,7 @@
             <p>賢者。役立たずなアニメのサーチエンジン。</p>
         </div>
         <SearchInput/>
-        <div class="mt-50 text-lg text-center">
+        <div class="mt-100 text-lg text-center">
             <p>
                 Kenja is a "Anime Search Engine" being developed by individual.
                 You can search anime or character with some keywords.

@@ -17,7 +17,7 @@
                     name="keyword" 
                     required
                     maxlength="50"
-                    placeholder="guitar girl"
+                    placeholder="Enter Keywords"
                     id="keyword"
                 > 
             </label>
