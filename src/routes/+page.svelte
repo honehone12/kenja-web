@@ -4,11 +4,11 @@
 
 <div class="hero">
     <div class="hero-content flex-col w-screen max-w-3xl">
-        <figure class="mb-10 mt-25">
+        <figure class="mb-10 mt-20">
             <img
                 src="KenjaMedium.png"
                 alt="Kenja logo with english and japanese kanji"
-                class="rounded-xl max-w-xs" 
+                class="rounded-xl max-w-2xs" 
             />
         </figure>
         <div class="text-lg text-center mb-10">
