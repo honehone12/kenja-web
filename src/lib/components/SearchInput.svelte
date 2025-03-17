@@ -17,7 +17,7 @@
                     name="keyword" 
                     required
                     maxlength="50"
-                    placeholder="Enter Keywords"
+                    placeholder="guitar girl"
                     id="keyword"
                 > 
             </label>
@@ -28,7 +28,7 @@
                 Search
             </button>
         </div>
-        <div class="mt-5 ml-5">
+        <div class="mt-10 ml-5">
             <label for="rating">
                 <span class="font-mono text-lg text-{toggleColor} mr-2">
                     {toggleText}
@@ -44,7 +44,7 @@
             </label>
         </div>
     </form>
-    <div class="mt-3 ml-5">
+    <div class="mt-5 ml-5">
         {#if isHentai}
             <div class="badge badge-dash badge-secondary text-sm">
                 I am over 18 years old.
