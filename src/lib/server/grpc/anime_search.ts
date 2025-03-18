@@ -60,7 +60,7 @@ export interface Parent {
 }
 
 export interface Candidate {
-  url: string;
+  id: number;
   parent?: Parent | undefined;
   name: string;
   nameEnglish?: string | undefined;
@@ -220,13 +220,13 @@ export const Parent: MessageFns<Parent> = {
 };
 
 function createBaseCandidate(): Candidate {
-  return { url: "", parent: undefined, name: "", nameEnglish: undefined, nameJapanese: undefined };
+  return { id: 0, parent: undefined, name: "", nameEnglish: undefined, nameJapanese: undefined };
 }
 
 export const Candidate: MessageFns<Candidate> = {
   encode(message: Candidate, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.url !== "") {
-      writer.uint32(10).string(message.url);
+    if (message.id !== 0) {
+      writer.uint32(8).int64(message.id);
     }
     if (message.parent !== undefined) {
       Parent.encode(message.parent, writer.uint32(18).fork()).join();
@@ -251,11 +251,11 @@ export const Candidate: MessageFns<Candidate> = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1: {
-          if (tag !== 10) {
+          if (tag !== 8) {
             break;
           }
 
-          message.url = reader.string();
+          message.id = longToNumber(reader.int64());
           continue;
         }
         case 2: {
@@ -301,7 +301,7 @@ export const Candidate: MessageFns<Candidate> = {
 
   fromJSON(object: any): Candidate {
     return {
-      url: isSet(object.url) ? globalThis.String(object.url) : "",
+      id: isSet(object.id) ? globalThis.Number(object.id) : 0,
       parent: isSet(object.parent) ? Parent.fromJSON(object.parent) : undefined,
       name: isSet(object.name) ? globalThis.String(object.name) : "",
       nameEnglish: isSet(object.nameEnglish) ? globalThis.String(object.nameEnglish) : undefined,
@@ -311,8 +311,8 @@ export const Candidate: MessageFns<Candidate> = {
 
   toJSON(message: Candidate): unknown {
     const obj: any = {};
-    if (message.url !== "") {
-      obj.url = message.url;
+    if (message.id !== 0) {
+      obj.id = Math.round(message.id);
     }
     if (message.parent !== undefined) {
       obj.parent = Parent.toJSON(message.parent);
@@ -334,7 +334,7 @@ export const Candidate: MessageFns<Candidate> = {
   },
   fromPartial(object: DeepPartial<Candidate>): Candidate {
     const message = createBaseCandidate();
-    message.url = object.url ?? "";
+    message.id = object.id ?? 0;
     message.parent = (object.parent !== undefined && object.parent !== null)
       ? Parent.fromPartial(object.parent)
       : undefined;
@@ -376,6 +376,17 @@ export type DeepPartial<T> = T extends Builtin ? T
   : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
   : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
+
+function longToNumber(int64: { toString(): string }): number {
+  const num = globalThis.Number(int64.toString());
+  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
+    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
+  }
+  return num;
+}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

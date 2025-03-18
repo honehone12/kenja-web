@@ -3,6 +3,7 @@
     
     /**
      * @type {{
+     *  id: number,
      *  parent?: {
      *   name: string;
      *   nameJapanese?: string | undefined;
@@ -13,6 +14,7 @@
      * }}
      */
     let {
+        id,
         parent,
         name,
         nameEnglish,
