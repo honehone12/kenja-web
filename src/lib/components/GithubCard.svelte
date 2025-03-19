@@ -6,6 +6,6 @@
             </a>
         </div>
         <h2 class="card-title">Kenja is Open Source</h2>
-        <p>Licensed under AGPL. Feel free to create issue or join discussion.</p>
+        <p>Feel free to create issue or join discussion.</p>
     </div>
 </div>
