@@ -5,7 +5,7 @@
     let {data} = $props();
 </script>
 
-<div class="hero h-screen">
+<div class="hero">
     <div>
         {#await data.stream}
             <span class="loading loading-dots loading-xl"></span>
@@ -14,6 +14,7 @@
                 <div class="hero-content">
                     <CandidateCard 
                         id={c.id}
+                        itemType={c.itemType}
                         parent={c.parent}
                         name={c.name}
                         nameEnglish={c.nameEnglish}

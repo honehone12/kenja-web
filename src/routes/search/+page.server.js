@@ -5,7 +5,7 @@ import { Candidate, Rating } from "$lib/server/grpc/anime_search.js";
 import log from "$lib/server/log.js";
 import { grpcClient } from "$lib/server/grpc_client.js";
 import { 
-    BAD_REQ, STATUS_BAD_REQ, 
+    BAD_REQUEST, STATUS_BAD_REQUEST, 
     INTERNAL, STATUS_INTERNAL 
 } from "$lib/server/error.js";
 
@@ -29,7 +29,7 @@ export async function load({url}) {
     
     const keyword = url.searchParams.get('keyword');
     if (!keyword || keyword.length > 50) {
-        return error(STATUS_BAD_REQ, BAD_REQ);
+        return error(STATUS_BAD_REQUEST, BAD_REQUEST);
     }
     const rating = url.searchParams.get('rating') 
         ? Rating.RATING_HENTAI : Rating.RATING_ALL_AGES;

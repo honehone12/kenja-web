@@ -49,6 +49,45 @@ export function ratingToJSON(object: Rating): string {
   }
 }
 
+export enum ItemType {
+  ITEM_TYPE_UNSPECIFIED = 0,
+  ITEM_TYPE_ANIME = 1,
+  ITEM_TYPE_CHARACTER = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function itemTypeFromJSON(object: any): ItemType {
+  switch (object) {
+    case 0:
+    case "ITEM_TYPE_UNSPECIFIED":
+      return ItemType.ITEM_TYPE_UNSPECIFIED;
+    case 1:
+    case "ITEM_TYPE_ANIME":
+      return ItemType.ITEM_TYPE_ANIME;
+    case 2:
+    case "ITEM_TYPE_CHARACTER":
+      return ItemType.ITEM_TYPE_CHARACTER;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return ItemType.UNRECOGNIZED;
+  }
+}
+
+export function itemTypeToJSON(object: ItemType): string {
+  switch (object) {
+    case ItemType.ITEM_TYPE_UNSPECIFIED:
+      return "ITEM_TYPE_UNSPECIFIED";
+    case ItemType.ITEM_TYPE_ANIME:
+      return "ITEM_TYPE_ANIME";
+    case ItemType.ITEM_TYPE_CHARACTER:
+      return "ITEM_TYPE_CHARACTER";
+    case ItemType.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
 export interface Query {
   keyword: string;
   rating: Rating;
@@ -61,6 +100,7 @@ export interface Parent {
 
 export interface Candidate {
   id: number;
+  itemType: ItemType;
   parent?: Parent | undefined;
   name: string;
   nameEnglish?: string | undefined;
@@ -220,7 +260,7 @@ export const Parent: MessageFns<Parent> = {
 };
 
 function createBaseCandidate(): Candidate {
-  return { id: 0, parent: undefined, name: "", nameEnglish: undefined, nameJapanese: undefined };
+  return { id: 0, itemType: 0, parent: undefined, name: "", nameEnglish: undefined, nameJapanese: undefined };
 }
 
 export const Candidate: MessageFns<Candidate> = {
@@ -228,17 +268,20 @@ export const Candidate: MessageFns<Candidate> = {
     if (message.id !== 0) {
       writer.uint32(8).int64(message.id);
     }
+    if (message.itemType !== 0) {
+      writer.uint32(16).int32(message.itemType);
+    }
     if (message.parent !== undefined) {
-      Parent.encode(message.parent, writer.uint32(18).fork()).join();
+      Parent.encode(message.parent, writer.uint32(26).fork()).join();
     }
     if (message.name !== "") {
-      writer.uint32(26).string(message.name);
+      writer.uint32(34).string(message.name);
     }
     if (message.nameEnglish !== undefined) {
-      writer.uint32(34).string(message.nameEnglish);
+      writer.uint32(42).string(message.nameEnglish);
     }
     if (message.nameJapanese !== undefined) {
-      writer.uint32(42).string(message.nameJapanese);
+      writer.uint32(50).string(message.nameJapanese);
     }
     return writer;
   },
@@ -259,11 +302,11 @@ export const Candidate: MessageFns<Candidate> = {
           continue;
         }
         case 2: {
-          if (tag !== 18) {
+          if (tag !== 16) {
             break;
           }
 
-          message.parent = Parent.decode(reader, reader.uint32());
+          message.itemType = reader.int32() as any;
           continue;
         }
         case 3: {
@@ -271,7 +314,7 @@ export const Candidate: MessageFns<Candidate> = {
             break;
           }
 
-          message.name = reader.string();
+          message.parent = Parent.decode(reader, reader.uint32());
           continue;
         }
         case 4: {
@@ -279,11 +322,19 @@ export const Candidate: MessageFns<Candidate> = {
             break;
           }
 
-          message.nameEnglish = reader.string();
+          message.name = reader.string();
           continue;
         }
         case 5: {
           if (tag !== 42) {
+            break;
+          }
+
+          message.nameEnglish = reader.string();
+          continue;
+        }
+        case 6: {
+          if (tag !== 50) {
             break;
           }
 
@@ -302,6 +353,7 @@ export const Candidate: MessageFns<Candidate> = {
   fromJSON(object: any): Candidate {
     return {
       id: isSet(object.id) ? globalThis.Number(object.id) : 0,
+      itemType: isSet(object.itemType) ? itemTypeFromJSON(object.itemType) : 0,
       parent: isSet(object.parent) ? Parent.fromJSON(object.parent) : undefined,
       name: isSet(object.name) ? globalThis.String(object.name) : "",
       nameEnglish: isSet(object.nameEnglish) ? globalThis.String(object.nameEnglish) : undefined,
@@ -313,6 +365,9 @@ export const Candidate: MessageFns<Candidate> = {
     const obj: any = {};
     if (message.id !== 0) {
       obj.id = Math.round(message.id);
+    }
+    if (message.itemType !== 0) {
+      obj.itemType = itemTypeToJSON(message.itemType);
     }
     if (message.parent !== undefined) {
       obj.parent = Parent.toJSON(message.parent);
@@ -335,6 +390,7 @@ export const Candidate: MessageFns<Candidate> = {
   fromPartial(object: DeepPartial<Candidate>): Candidate {
     const message = createBaseCandidate();
     message.id = object.id ?? 0;
+    message.itemType = object.itemType ?? 0;
     message.parent = (object.parent !== undefined && object.parent !== null)
       ? Parent.fromPartial(object.parent)
       : undefined;
