@@ -28,7 +28,7 @@
                 Search
             </button>
         </div>
-        <div class="mt-10 ml-5">
+        <div class="mt-10 ml-4">
             <label for="rating">
                 <span class="font-mono text-lg text-{toggleColor} mr-2">
                     {toggleText}
@@ -38,24 +38,15 @@
                     name="rating"
                     value="hentai"
                     id="rating"
-                    class="toggle toggle-secondary"
+                    class="toggle toggle-secondary mr-2"
                     bind:checked={isHentai}
                 />
+                {#if isHentai}
+                    <div class="badge badge-dash badge-secondary text-sm">
+                        <p>I am over 18 years old.</p>
+                    </div>
+                {/if}
             </label>
         </div>
     </form>
-    <div class="mt-5 ml-5">
-        {#if isHentai}
-            <div class="badge badge-dash badge-secondary text-sm">
-                <p>I am over 18 years old.</p>
-            </div>
-            <div class="badge badge-dash badge-secondary text-sm">
-                <p>私は１８歳以上です。</p>
-            </div>
-        {:else}
-            <div class="badge badge-dash badge-accent text-sm">
-                All Ages
-            </div>
-        {/if}
-    </div>
 </div>
