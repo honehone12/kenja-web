@@ -47,10 +47,10 @@
     <div class="mt-5 ml-5">
         {#if isHentai}
             <div class="badge badge-dash badge-secondary text-sm">
-                I am over 18 years old.
+                <p>I am over 18 years old.</p>
             </div>
             <div class="badge badge-dash badge-secondary text-sm">
-                私は１８歳以上です。
+                <p>私は１８歳以上です。</p>
             </div>
         {:else}
             <div class="badge badge-dash badge-info text-sm">
