@@ -53,7 +53,7 @@
                 <p>私は１８歳以上です。</p>
             </div>
         {:else}
-            <div class="badge badge-dash badge-info text-sm">
+            <div class="badge badge-dash badge-accent text-sm">
                 All Ages
             </div>
         {/if}

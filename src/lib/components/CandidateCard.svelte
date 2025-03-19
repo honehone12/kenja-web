@@ -17,7 +17,7 @@
      *  nameJapanese?: string | undefined;
      * }}
      */
-    let {
+    const {
         id,
         itemType,
         parent,
@@ -25,32 +25,35 @@
         nameEnglish,
         nameJapanese
     } = $props();
-    let badgeColor = page.url.searchParams.get('rating') 
-        ? 'badge-secondary' : 'badge-accent';
-    let textColor = page.url.searchParams.get('rating')
-        ? 'text-secondary' : 'text-accent';
+    const rating = page.url.searchParams.get('rating');
+    const textColor = rating ? 'secondary' : 'accent';
+    const pageRating = rating ? '&rating=hentai' : '';
 </script>
 
 <div class="card card-xl min-w-full max-w-200 bg-base-200 card-border">
     <div class="card-body">
         {#if itemType === ITEM_TYPE_CHARACTER && parent}
-            <div class="badge badge-outline {badgeColor}">
+            <div class="badge badge-outline badge-info">
                 <p>Character キャラクター</p>
             </div>    
-            <h3 class="text-sm">
-                {parent.name}/{parent.nameJapanese ?? ''}
+            <h3 class="text-base">
+                {parent.name} / {parent.nameJapanese ?? ''}
             </h3>
         {:else if itemType === ITEM_TYPE_ANIME}
-            <div class="badge badge-outline {badgeColor}">
+            <div class="badge badge-outline badge-info">
                 <p>Anime アニメ</p>
             </div>
         {/if}
-        <h1 class="card-title">{name}</h1>
         {#if nameEnglish}
-            <h3 class="text-lg">({nameEnglish})</h3>
+            <h2 class="text-lg">{nameEnglish}</h2>
         {/if}
         {#if nameJapanese}
-            <h1 class="card-title {textColor}">{nameJapanese}</h1>
+            <h2 class="text-lg">{nameJapanese}</h2>
         {/if}
+        <a href="/item?id={id}&item-type={itemType}{pageRating}">
+            <h1 class="card-title text-{textColor} link link-hover">
+                {name}
+            </h1>
+        </a>
     </div>
 </div>

@@ -6,5 +6,7 @@ import "../app.css";
 </script>
 
 <Navbar/>
-{@render children()}
+<div class="min-h-screen">
+	{@render children()}
+</div>
 <Footer/>
