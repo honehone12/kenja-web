@@ -11,7 +11,10 @@
             <div class="hero-content">
                 <span class="loading loading-dots loading-xl"></span>
             </div>
-        {:then candidates} 
+        {:then candidates}
+            <div class="hero-content mt-3">
+                <h1 class="text-2xl">{candidates.length} item{candidates.length === 1 ? '' : 's'}</h1>
+            </div>
             {#each candidates as c}
                 <div class="hero-content">
                     <CandidateCard 
@@ -23,7 +26,7 @@
                         nameJapanese={c.nameJapanese}
                     />
                 </div>
-            {/each}
+            {/each}   
         {:catch}
             <ErrorMessage/>
         {/await}

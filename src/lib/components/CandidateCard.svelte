@@ -26,7 +26,7 @@
         nameJapanese
     } = $props();
     const rating = page.url.searchParams.get('rating');
-    const textColor = rating ? 'secondary' : 'accent';
+    const textColor = rating ? 'text-secondary' : 'text-accent';
     const pageRating = rating ? '&rating=hentai' : '';
 </script>
 
@@ -51,7 +51,7 @@
             <h2 class="text-lg">{nameJapanese}</h2>
         {/if}
         <a href="/item?id={id}&item-type={itemType}{pageRating}">
-            <h1 class="card-title text-{textColor} link link-hover">
+            <h1 class="card-title {textColor} link link-hover">
                 {name}
             </h1>
         </a>
