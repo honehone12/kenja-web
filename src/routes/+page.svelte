@@ -2,7 +2,7 @@
     import SearchInput from "$lib/components/SearchInput.svelte";
 </script>
 
-<div class="hero">
+<div class="hero min-h-screen">
     <div class="hero-content flex-col w-screen max-w-3xl">
         <figure class="mb-10 mt-20">
             <img

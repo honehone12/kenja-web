@@ -5,10 +5,12 @@
     let {data} = $props();
 </script>
 
-<div class="hero">
+<div class="hero min-h-screen">
     <div>
         {#await data.stream}
-            <span class="loading loading-dots loading-xl"></span>
+            <div class="hero-content">
+                <span class="loading loading-dots loading-xl"></span>
+            </div>
         {:then candidates} 
             {#each candidates as c}
                 <div class="hero-content">
