@@ -13,7 +13,6 @@
         </figure>
         <div class="text-lg text-center mb-10">
             <p>Kenja. A Useless Anime Search Engine.</p>
-            <p>賢者。役立たずなアニメのサーチエンジン。</p>
         </div>
         <SearchInput/>
         <div class="mt-100 text-lg text-center">
@@ -33,7 +32,6 @@
             <br>
             <p>So, please don't expect so much.</p>
             <p>Thank you for your understanding.</p>
-            <p>日本語対応はしてないです。さーせん。(ToT)</p>
         </div>
     </div>
 </div>
