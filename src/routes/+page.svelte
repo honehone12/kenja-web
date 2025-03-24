@@ -12,10 +12,10 @@
             />
         </figure>
         <div class="text-lg text-center mb-10">
-            <p>Kenja. A Useless Anime Search Engine.</p>
+            <p>Kenja. A ダメ Anime Search Engine.</p>
         </div>
         <SearchInput/>
-        <div class="mt-100 text-lg text-center">
+        <div class="mt-120 mb-60 text-lg text-center">
             <p>
                 Kenja is a "Anime Search Engine" being developed by individual.
                 You can search anime or character with some keywords.
